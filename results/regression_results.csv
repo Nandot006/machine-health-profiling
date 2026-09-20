@@ -1,0 +1,11 @@
+Rank,Model,Train R2,Test R2,Test RMSE (MPa),Test MAE (MPa)
+1,Gradient Boosting Regressor,0.9821,0.934,4.4365,2.8811
+2,Random Forest Regressor,0.9845,0.9201,4.8835,3.4748
+3,Decision Tree Regressor,0.9127,0.8564,6.5443,5.012
+4,Support Vector Regressor (SVR),0.903,0.8516,6.6543,4.6613
+5,Polynomial Regression (Deg 2),0.8336,0.7873,7.965,5.9294
+6,K-Nearest Neighbors Regressor,0.9972,0.7754,8.1861,5.9519
+7,Ridge Regression,0.6161,0.5906,11.0513,8.7971
+8,ElasticNet Regression,0.6151,0.5901,11.0587,8.8007
+9,Lasso Regression,0.6163,0.5898,11.0621,8.8054
+10,Linear Regression,0.6172,0.5868,11.1027,8.8623
