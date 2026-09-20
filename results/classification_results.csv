@@ -1,0 +1,6 @@
+Rank,Algorithm,Accuracy,Precision (Class 1),Recall (Class 1),F1 (Weighted),F1 (Failure Class),ROC-AUC Score
+1,Support Vector Classifier (SVC),0.939,0.343,0.8676,0.9514,0.4917,0.9689
+2,Decision Tree Classifier,0.9455,0.3758,0.9118,0.9561,0.5322,0.9415
+3,Logistic Regression,0.858,0.1786,0.8824,0.8998,0.297,0.9394
+4,Naive Bayes (Gaussian),0.9585,0.4118,0.5147,0.9607,0.4575,0.9349
+5,K-Nearest Neighbors,0.9755,0.8276,0.3529,0.9707,0.4948,0.8834
