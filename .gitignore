@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 .system_generated/
 *.log
+Concrete_Data.xls
+ai4i2020.csv
+CODE/
