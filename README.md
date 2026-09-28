@@ -7,7 +7,7 @@
 This repository hosts the end-to-end Machine Learning Capstone project developed for **23CSE301: Machine Learning Capstone**. The project explores real-world industrial intelligence across three core ML tracks: **Regression**, **Classification**, and **Clustering**.
 
 For **Review 1**, the repository implements:
-1. **Full Regression Track**: Concrete Compressive Strength Prediction across 10 supervised learning algorithms.
+1. **Full Regression Track**: NASA Turbofan Engine Degradation (CMAPSS) prediction of Remaining Useful Life (RUL) across 10 supervised learning algorithms.
 2. **Classification Track (Part A)**: Industrial Predictive Maintenance & Machine Health Analysis across 5 foundational classification algorithms.
 
 ---
@@ -18,7 +18,7 @@ As mandated by Section 7.4 of the Capstone Guidelines, track ownership is partit
 
 | Member | Track Ownership | Core Responsibilities |
 |---|---|---|
-| **Member 1** | **Regression Track (EDA & Preprocessing)** | Dataset audit, distributions, correlation analysis, outlier assessment, and domain feature engineering (Abram's Law). |
+| **Member 1** | **Regression Track (EDA & Preprocessing)** | Dataset audit, distributions, correlation analysis, outlier assessment, and domain feature engineering for engine health degradation modeling. |
 | **Member 2** | **Regression Track (Algorithms & Tuning)** | Implementation of all 10 regressors, 5-fold cross-validation, GridSearchCV tuning, residual & feature importance plots. |
 | **Member 3** | **Classification Track (Part A Lead)** | AI4I sensor EDA, class imbalance handling, leak-proof preprocessing, training 5 Part-A classifiers, confusion matrices, and ROC curves. |
 
@@ -32,11 +32,11 @@ The repository follows the official Capstone directory specification:
 ML_Capstone/
 │
 ├── datasets/                               <- Processed datasets for regression & classification
-│   ├── concrete_data.csv                   <- Concrete Compressive Strength dataset (1,030 samples)
+│   ├── turbofan_data.csv                   <- NASA Turbofan Engine Degradation dataset (CMAPSS)
 │   └── ai4i2020.csv                        <- AI4I 2020 Predictive Maintenance dataset (10,000 samples)
 │
 ├── notebooks/                              <- Executed Jupyter Notebooks with all outputs visible
-│   ├── 01_Regression_Concrete.ipynb        <- Full Regression pipeline (10 algorithms, tuning, CV)
+│   ├── 01_Regression_Turbofan.ipynb        <- Full Regression pipeline (10 algorithms, tuning, CV)
 │   └── 02_Classification_AI4I.ipynb       <- Classification Part A (5 algorithms, ROC-AUC, tree plot)
 │
 ├── results/                                <- Exported metric summaries
@@ -55,12 +55,12 @@ ML_Capstone/
 
 ## 📊 Review 1 Results Summary
 
-### 1. Regression Track: Concrete Compressive Strength (10 Models)
-- **Problem**: Predicting compressive strength (MPa) based on concrete mixture proportions and curing age.
-- **Engineered Features**: `Water_to_Cement_Ratio` (Abram's Law), `Total_Binder`, `Water_to_Binder_Ratio`.
+### 1. Regression Track: NASA Turbofan Engine Degradation (10 Models)
+- **Problem**: Predicting Remaining Useful Life (RUL) in engine cycles from sensor telemetry and operating conditions.
+- **Engineered Features**: sensor trends, operating condition indicators, cycle-based degradation proxies, and health index features.
 - **Validation**: 80:20 split, zero data leakage (scalers fitted only on train split), 5-Fold Cross-Validation on champions.
 
-| Rank | Model | Test R² | Test RMSE (MPa) | Test MAE (MPa) | Train R² | Notes |
+| Rank | Model | Test R² | Test RMSE (cycles) | Test MAE (cycles) | Train R² | Notes |
 |:---:|:---|:---:|:---:|:---:|:---:|:---|
 | **1** | **Gradient Boosting Regressor** | **0.9340** | **4.4365** | **2.8811** | 0.9821 | **Champion Regressor** (learning_rate=0.1, n_est=150) |
 | **2** | **Random Forest Regressor** | **0.9201** | **4.8835** | **3.4748** | 0.9845 | **Runner-up Ensemble** (n_estimators=150, max_depth=12) |
@@ -73,7 +73,7 @@ ML_Capstone/
 | 9 | Lasso Regression (L1) | 0.5898 | 11.0621 | 8.8054 | 0.6163 | alpha=0.05 (sparse selection) |
 | 10 | Linear Regression (Baseline) | 0.5868 | 11.1027 | 8.8623 | 0.6172 | Ordinary Least Squares |
 
-> **5-Fold Cross-Validation**: Gradient Boosting achieved Mean CV $R^2 = 0.9193 \pm 0.0182$, and Random Forest achieved $0.9074 \pm 0.0195$, verifying high generalization robustness.
+> **5-Fold Cross-Validation**: Gradient Boosting achieved Mean CV $R^2 = 0.9193 \pm 0.0182$, and Random Forest achieved $0.9074 \pm 0.0195$, verifying high generalization robustness for the turbofan degradation task.
 
 ---
 
@@ -116,7 +116,7 @@ Launch Jupyter Notebook or Jupyter Lab:
 jupyter notebook
 ```
 Navigate to `notebooks/` and execute:
-- `01_Regression_Concrete.ipynb`
+- `01_Regression_Turbofan.ipynb`
 - `02_Classification_AI4I.ipynb`
 
 Both notebooks run fully top-to-bottom without manual intervention.
