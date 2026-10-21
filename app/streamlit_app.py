@@ -285,7 +285,8 @@ with tab_clu:
                 fig.update_traces(marker=dict(size=5))
                 fig.add_trace(go.Scatter(x=[point[0]], y=[point[1]], mode="markers",
                                          name="This cycle",
-                                         marker=dict(symbol="star", size=20, color="black",
+                                         # bright blue: no group uses it, and it reads on light and dark themes
+                                         marker=dict(symbol="star", size=22, color="#1e88e5",
                                                      line=dict(color="white", width=1.5))))
                 fig.update_layout(height=420, legend=dict(orientation="h", y=-0.2),
                                   margin=dict(t=50, b=10))
