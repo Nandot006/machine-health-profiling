@@ -55,6 +55,15 @@ def _load_ai4i(_mtime):
     return obj, {}
 
 
+@st.cache_data
+def load_ai4i_comparison():
+    """Test-set metrics of all 10 classifiers from notebook 02, or None if not exported yet."""
+    path = SAMPLE_DIR / "ai4i_model_comparison.csv"
+    if not path.exists():
+        return None
+    return pd.read_csv(path, index_col="Algorithm")
+
+
 @st.cache_resource
 def load_hydraulic():
     return joblib.load(HYDRAULIC_MODEL)
@@ -181,6 +190,37 @@ with tab_cls:
                 details.append(f"{k}: {v:.3f}" if isinstance(v, float) else f"{k}: {v}")
             if details:
                 st.caption(" · ".join(details) + " (held-out test set)")
+
+    comparison = load_ai4i_comparison()
+    if comparison is not None:
+        with st.expander("How this model was chosen — all 10 classifiers compared"):
+            final = (info or {}).get("model_name", "").replace(" (tuned)", "")
+            st.write("All ten algorithms were trained on the same 8,000 runs and scored on the "
+                     "same 2,000 held-out runs (68 failures), each at its default threshold. "
+                     "They are ranked by F1 of the failure class, because accuracy is "
+                     "misleading when only 3.4% of runs fail.")
+            shown = comparison.drop(columns=["Rank"], errors="ignore").rename(columns={
+                "Precision (Class 1)": "Precision", "Recall (Class 1)": "Recall",
+                "F1 (Failure Class)": "F1 (failure)", "ROC-AUC Score": "ROC-AUC"})
+            metric_cols = [c for c in shown.columns if c != "Part"]
+            st.dataframe(
+                shown.style.format("{:.3f}", subset=metric_cols)
+                     .apply(lambda r: ["font-weight: bold; background-color: rgba(30,136,229,0.18)"
+                                       if r.name == final else "" for _ in r], axis=1),
+                width="stretch")
+            bars = px.bar(
+                shown.reset_index().melt(id_vars=["Algorithm", "Part"],
+                                         value_vars=["Recall", "Precision", "F1 (failure)"],
+                                         var_name="Metric", value_name="Score"),
+                x="Algorithm", y="Score", color="Metric", barmode="group",
+                color_discrete_sequence=["#1e88e5", "#ffb000", "#d81b60"])
+            bars.update_layout(height=360, margin=dict(t=10, b=10), xaxis_title=None,
+                               yaxis_range=[0, 1], legend_title=None)
+            st.plotly_chart(bars, width="stretch")
+            if final and info.get("threshold") is not None:
+                st.caption(f"The app uses **{final}** (highlighted), tuned with GridSearchCV. "
+                           f"Its decision threshold of {float(info['threshold']):.3f} was chosen "
+                           "by cross-validation on the training runs only.")
 
     st.subheader("Physics checks")
     st.caption("The AI4I dataset was generated from these documented rules. They are shown "
