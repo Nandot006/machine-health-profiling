@@ -1,0 +1,11 @@
+Rank,Model,Train R2,Test R2,Test RMSE (cycles),Test MAE (cycles)
+1,Support Vector Regressor (SVR),0.9253,0.9351,10.6444,6.9955
+2,Random Forest Regressor,0.9847,0.9236,11.5489,7.5531
+3,Gradient Boosting Regressor,0.9617,0.9207,11.7674,8.0161
+4,Polynomial Regression (Deg 2),0.894,0.9095,12.5672,9.9925
+5,K-Nearest Neighbors Regressor,1.0,0.9087,12.6212,8.1593
+6,Decision Tree Regressor,0.9362,0.8795,14.5039,9.4261
+7,ElasticNet Regression,0.8224,0.8587,15.7039,12.3652
+8,Lasso Regression,0.825,0.8545,15.937,12.5806
+9,Ridge Regression,0.8252,0.8537,15.9819,12.6154
+10,Linear Regression,0.8252,0.8528,16.0263,12.6565
