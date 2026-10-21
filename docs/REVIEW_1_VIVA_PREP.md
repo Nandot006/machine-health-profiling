@@ -176,7 +176,7 @@ According to Section 7.4 of the guidelines, **work must be divided by track, not
 |---|---|---|
 | **Member 1** | **Regression Track Lead (Parts A, B)** | Presents Concrete dataset audit, EDA distributions, correlation heatmap, deduplication, and domain feature engineering (Abram's law). |
 | **Member 2** | **Regression Track Lead (Part C)** | Presents the 10 regression algorithms, model ranking table, 5-fold cross-validation, GridSearchCV hyperparameter tuning, and diagnostic plots (residual & predicted vs actual). |
-| **Member 3** | **Classification Track Lead (Parts A, B, D)** | Presents AI4I dataset audit, handling class imbalance (96.6% vs 3.4%), leak prevention (dropping TWF/HDF), 5 Part-A classification models, confusion matrices, ROC curves, and the Decision Tree diagram. |
+| **Member 3 (Geethika - @Geethika0609)** | **Classification Track Lead (Parts A, B, D)** | Presents AI4I dataset audit, handling class imbalance (96.6% vs 3.4%), leak prevention (dropping TWF/HDF), 5 Part-A classification models, confusion matrices, ROC curves, and the Decision Tree diagram. |
 
 ---
 *Good luck with Review 1! Keep this guide open and practice the model answers.*
